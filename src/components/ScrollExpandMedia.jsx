@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { asset } from "../lib/asset.js";
 
 /**
  * Adapted from the ScrollExpandMedia component: a small centered media box
@@ -93,7 +94,7 @@ export default function ScrollExpandMedia({ mediaType = "image", mediaSrc, bgSrc
             foreground's mediaType — matches the original component, where
             bgImageSrc was always rendered through next/image regardless of
             whether the expanding media was a video. */}
-        <img src={bgSrc} alt="" />
+        <img src={asset(bgSrc)} alt="" />
         <div className="sem-bg-scrim" />
       </motion.div>
 
@@ -104,7 +105,7 @@ export default function ScrollExpandMedia({ mediaType = "image", mediaSrc, bgSrc
         {mediaType === "video" ? (
           <video
             className="road-video"
-            src={mediaSrc}
+            src={asset(mediaSrc)}
             muted
             loop
             playsInline
@@ -112,7 +113,7 @@ export default function ScrollExpandMedia({ mediaType = "image", mediaSrc, bgSrc
             preload="none"
           />
         ) : (
-          <img src={mediaSrc} alt="" />
+          <img src={asset(mediaSrc)} alt="" />
         )}
         <motion.div
           className="sem-box-scrim"

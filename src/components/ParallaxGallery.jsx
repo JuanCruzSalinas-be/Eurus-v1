@@ -1,5 +1,6 @@
 import React from "react";
 import ParallaxImg from "./ParallaxImg.jsx";
+import { asset } from "../lib/asset.js";
 
 const WIDTH_CLASS = {
   third: "w-third",
@@ -37,19 +38,19 @@ export default function ParallaxGallery({ items }) {
             alignClass={alignClass}
           >
             <div id={item.id} className="parallax-img-inner">
-              {item.type === "image" && <img src={item.src} alt={item.alt} />}
+              {item.type === "image" && <img src={asset(item.src)} alt={item.alt} />}
 
               {item.type === "video" && (
-                <video src={item.src} muted loop playsInline autoPlay preload="none" />
+                <video src={asset(item.src)} muted loop playsInline autoPlay preload="none" />
               )}
 
               {item.type === "split" && (
                 <div className="static-split">
                   <div className="static-split-half">
-                    <img src={item.left.src} alt={item.left.alt} />
+                    <img src={asset(item.left.src)} alt={item.left.alt} />
                   </div>
                   <div className="static-split-half">
-                    <img src={item.right.src} alt={item.right.alt} />
+                    <img src={asset(item.right.src)} alt={item.right.alt} />
                   </div>
                 </div>
               )}

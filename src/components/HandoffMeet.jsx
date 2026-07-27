@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import useHandMeetScroll from "../hooks/useHandMeetScroll.js";
+import { asset } from "../lib/asset.js";
 
 /**
  * The human hand and the AI hand fly in from opposite corners as this
@@ -19,12 +20,12 @@ export default function HandoffMeet() {
       <div className="handoff-meet-stage">
         <img
           className="handoff-hand handoff-hand-human"
-          src="/images/hand-human.png"
+          src={asset("/images/hand-human.png")}
           alt="A human hand reaching toward the AI hand"
         />
         <img
           className="handoff-hand handoff-hand-ai"
-          src="/images/hand-robot.png"
+          src={asset("/images/hand-robot.png")}
           alt="A robotic hand reaching toward the human hand"
         />
       </div>

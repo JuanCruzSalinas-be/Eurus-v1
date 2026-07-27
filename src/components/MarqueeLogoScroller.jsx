@@ -1,4 +1,5 @@
 import React from "react";
+import { asset } from "../lib/asset.js";
 
 /**
  * Ported from the MarqueeLogoScroller shadcn-style component: an
@@ -33,7 +34,7 @@ export default function MarqueeLogoScroller({
         >
           {[...logos, ...logos].map((logo, index) => (
             <div key={index} className="marquee-scroller-tile">
-              <img src={logo.src} alt={logo.alt} />
+              <img src={asset(logo.src)} alt={logo.alt} />
             </div>
           ))}
         </div>
