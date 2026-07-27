@@ -1,0 +1,532 @@
+/* Exact neuemontreal.com palette, pulled from their live CSS output:
+   ink #1a1a1a, cream #f0e7d4, electric blue #0099ff, grey #ebebeb, plus
+   their full swatch rainbow — used deliberately across sections instead
+   of one accent everywhere. */
+:root{
+  --bg:#fbc123;
+  --bg-raised:#ffd35c;
+  --fg:#1a1a1a;
+  --muted:#726b58;
+  --accent:#0099ff;
+  --accent-2:#ff4000;
+  --deep:#8fd8ff;
+  --deep-fg:#0b1d3a;
+  --line:rgba(26,26,26,.14);
+  --shadow:0 20px 50px -25px rgba(26,26,26,.35);
+
+  --sw-green:#18bc42;
+  --sw-purple:#6157bd;
+  --sw-pink:#f66bc8;
+  --sw-yellow:#efc21e;
+  --sw-lime:#bdd116;
+  --sw-lavender:#a26ed6;
+  --sw-red:#d82f2f;
+  --sw-indigo:#4365ff;
+  --sw-brown:#b76745;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#eaf5ff;
+    --bg-raised:#dff0ff;
+    --fg:#0b1d3a;
+    --muted:#4a6a8a;
+    --accent:#0099ff;
+    --accent-2:#ff4000;
+    --deep:#8fd8ff;
+    --deep-fg:#0b1d3a;
+    --line:rgba(11,29,58,.14);
+    --shadow:0 20px 50px -25px rgba(11,29,58,.25);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#eaf5ff;
+  --bg-raised:#dff0ff;
+  --fg:#0b1d3a;
+  --muted:#4a6a8a;
+  --accent:#0099ff;
+  --accent-2:#ff4000;
+  --deep:#8fd8ff;
+  --deep-fg:#0b1d3a;
+  --line:rgba(11,29,58,.14);
+  --shadow:0 20px 50px -25px rgba(11,29,58,.25);
+}
+:root[data-theme="light"]{
+  --bg:#fbc123;
+  --bg-raised:#ffd35c;
+  --fg:#1a1a1a;
+  --muted:#726b58;
+  --accent:#0099ff;
+  --accent-2:#ff4000;
+  --deep:#8fd8ff;
+  --deep-fg:#0b1d3a;
+  --line:rgba(26,26,26,.14);
+  --shadow:0 20px 50px -25px rgba(26,26,26,.35);
+}
+
+*{ box-sizing:border-box; }
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--fg);
+  font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  font-size:17px;
+  line-height:1.55;
+  overflow-x:hidden;
+  transition:background .3s ease, color .3s ease;
+}
+::selection{ background:var(--accent); color:var(--bg); }
+
+.mono{
+  font-family: ui-monospace, 'SF Mono', 'Cascadia Code', 'Roboto Mono', Menlo, Consolas, monospace;
+}
+/* Editorial serif display — ready for whenever headline/body copy goes
+   back onto these cards. */
+.display{
+  font-family: 'New York', 'Iowan Old Style', Georgia, 'Times New Roman', serif;
+  font-weight:400;
+  font-style:italic;
+  transform-origin:left center;
+  letter-spacing:-.01em;
+}
+.cond{ transform:scaleX(.94); }
+
+a{ color:inherit; transition:color .2s ease-out; }
+
+.wrap{
+  max-width:1180px;
+  margin:0 auto;
+  padding:0 clamp(20px,4vw,56px);
+}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;
+  min-height:92vh;
+  display:flex;
+  align-items:flex-end;
+  color:var(--deep-fg);
+  overflow:hidden;
+}
+.hero img{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  object-position:center 30%;
+}
+
+/* ---------- SECTION SCAFFOLD (kept for whenever copy comes back) ---------- */
+.section-head{
+  display:grid; grid-template-columns:auto 1fr; gap:24px clamp(24px,6vw,90px);
+  align-items:end; margin-bottom:clamp(36px,5vw,64px);
+}
+.section-num{ font-size:12px; letter-spacing:.2em; color:var(--accent); }
+.section-title{
+  font-size:clamp(32px,5.4vw,58px);
+  line-height:.98; margin:6px 0 0;
+  text-transform:uppercase;
+  text-wrap:balance;
+}
+.section-note{ max-width:280px; font-size:14px; color:var(--muted); align-self:end; }
+@media (max-width:700px){
+  .section-head{ grid-template-columns:1fr; }
+  .section-note{ max-width:none; }
+}
+
+/* ---------- COLOR BANDS ---------- */
+/* neuemontreal.com alternates full section backgrounds through its swatch
+   rainbow rather than sitting on one tone; these bands do the same,
+   re-theming every child that reads var(--fg)/--muted/--line/--bg-raised. */
+.band-blue{
+  background:var(--accent); --bg:var(--accent); --fg:var(--deep-fg); --muted:rgba(240,231,212,.78);
+  --line:rgba(240,231,212,.28); --bg-raised:rgba(240,231,212,.1); --shadow:none;
+}
+.band-indigo{
+  background:var(--sw-indigo); --bg:var(--sw-indigo); --fg:var(--deep-fg); --muted:rgba(240,231,212,.78);
+  --line:rgba(240,231,212,.28); --bg-raised:rgba(240,231,212,.1); --shadow:none;
+}
+.band-grey{ background:#fff; --bg:#fff; }
+#partners{ padding:clamp(80px,10vw,120px) 0; }
+.band-ink{
+  background:var(--deep); --bg:var(--deep); --fg:var(--deep-fg); --muted:rgba(240,231,212,.65);
+  --line:rgba(240,231,212,.22); --bg-raised:rgba(240,231,212,.08); --shadow:none;
+}
+.band-blue .section-num, .band-indigo .section-num, .band-ink .section-num{ color:var(--deep-fg); }
+
+/* ---------- ALIGNMENT VARIETY ---------- */
+.align-center{ text-align:center; }
+.align-center .section-head{ grid-template-columns:1fr; justify-items:center; }
+.align-center .section-note{ max-width:420px; margin:0 auto; }
+.section-head.centered{ grid-template-columns:1fr; justify-items:center; text-align:center; }
+
+.prose{ max-width:640px; color:var(--fg); }
+.prose p{ color:var(--muted); }
+.prose p + p{ margin-top:1em; }
+
+/* ---------- IMAGE GALLERY (legacy, unused — kept for Gallery.jsx) ---------- */
+.gallery{ padding:clamp(60px,10vw,120px) 0; border-bottom:1px solid var(--line); }
+.gallery-wrap{
+  max-width:1400px; margin:0 auto; padding:0 clamp(20px,4vw,56px);
+  display:flex; flex-direction:column; align-items:center;
+  gap:clamp(40px,6vw,90px);
+}
+.photo-card{
+  position:relative; width:100%; overflow:hidden; border-radius:24px;
+  box-shadow:var(--shadow); background:var(--bg-raised);
+}
+.photo-card.ratio-wide{ aspect-ratio:16/9; }
+.photo-card.ratio-narrow{ max-width:640px; aspect-ratio:3/4; }
+.photo-card > img, .photo-card > video{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;
+}
+@media (max-width:700px){
+  .photo-card.ratio-wide{ aspect-ratio:4/5; }
+  .photo-card.ratio-narrow{ max-width:100%; aspect-ratio:4/5; }
+}
+/* Cards rise, fade, and settle into place as they scroll into view —
+   the ScrollTrigger-style reveal sentient.foundation uses on its own
+   image cards. */
+@media (prefers-reduced-motion: no-preference){
+  .photo-card.reveal{
+    opacity:0; transform:translateY(34px) scale(.97);
+    transition:opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1);
+  }
+  .photo-card.reveal.in{ opacity:1; transform:none; }
+}
+
+/* ---------- STATIC FILMSTRIP (seamless seams, neuemontreal-style hover) ---------- */
+/* Flush, full-bleed, no radius/shadow/gap between cards — they run
+   directly into one another. A matched color grade (filter, below) keeps
+   the different photos feeling like one family instead of four unrelated
+   crops, and a dark gradient at the top/bottom edge of each card overlaps
+   with its neighbor's at the shared seam, so the cut reads as a soft
+   dissolve rather than a hard line. No scroll-driven reveal/parallax on
+   any of this — still present at full opacity from first paint — but each
+   photo gets neuemontreal.com's own hover language: a slow image zoom on
+   the same cubic-bezier(.76,0,.24,1) curve their headline reveals use. */
+.static-gallery{ background:var(--deep); }
+.static-gallery-wrap{ display:flex; flex-direction:column; }
+.static-card{
+  position:relative; width:100%; overflow:hidden;
+  height:92vh; background:var(--deep);
+}
+.static-card > img, .static-card > video{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;
+  filter:saturate(.9) contrast(1.05);
+  transition:transform .8s cubic-bezier(.76,0,.24,1);
+}
+.static-card:hover > img, .static-card:hover > video{ transform:scale(1.05); }
+.static-card::before, .static-card::after{
+  content:""; position:absolute; left:0; right:0; height:16%; z-index:1; pointer-events:none;
+}
+.static-card::before{ top:0; background:linear-gradient(to bottom, rgba(26,26,26,.4), transparent); }
+.static-card::after{ bottom:0; background:linear-gradient(to top, rgba(26,26,26,.4), transparent); }
+.static-card:first-child::before{ display:none; }
+.static-card:last-child::after{ display:none; }
+@media (max-width:700px){
+  .static-card{ height:70vh; }
+}
+.static-split{ position:absolute; inset:0; display:flex; z-index:0; }
+.static-split-half{ flex:1 1 50%; overflow:hidden; position:relative; }
+.static-split-half img{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;
+  filter:saturate(.9) contrast(1.05);
+  transition:transform .8s cubic-bezier(.76,0,.24,1);
+}
+.static-split-half:hover img{ transform:scale(1.05); }
+
+/* ---------- PARALLAX GALLERY ---------- */
+/* Ported from modern-hero's ParallaxImages/ParallaxImg: each image is a
+   real framer-motion element (see ParallaxImg.jsx) whose translateY runs
+   from `start` to `end` px across its own on-screen scroll range, fading
+   and scaling down over the last quarter of that range as it exits. The
+   varied width/alignment per item (set via content.json's width/align,
+   mapped to the classes below) is what gives the staggered, non-grid feel
+   the source component has — not a layout trick in this CSS alone. */
+.parallax-gallery{
+  max-width:1100px; margin:0 auto;
+  padding:clamp(80px,12vw,160px) clamp(20px,4vw,40px);
+  background:var(--bg);
+}
+.parallax-img{ margin-bottom:clamp(40px,7vw,110px); }
+/* The handoff image floats up to +300px downward at full scroll (see its
+   `end` value in content.json) — that transform doesn't reserve layout
+   space on its own, so without this the card can drift down far enough to
+   visually reach the white Partners section below it. This margin holds
+   enough clearance so it never does. */
+.parallax-img:last-child{ margin-bottom:340px; }
+@media (max-width:700px){
+  .parallax-img:last-child{ margin-bottom:180px; }
+}
+.parallax-img-inner{
+  position:relative; overflow:hidden; border-radius:20px;
+  box-shadow:var(--shadow); aspect-ratio:4/3; background:var(--bg-raised);
+}
+.parallax-img-inner img, .parallax-img-inner video{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;
+  filter:saturate(.9) contrast(1.05);
+}
+.w-third{ width:34%; }
+.w-two-thirds{ width:66%; }
+.w-five-twelfths{ width:40%; }
+.w-half{ width:34%; }
+.align-left{ margin-right:auto; }
+.align-right{ margin-left:auto; }
+.align-center-block{ margin-left:auto; margin-right:auto; }
+.align-offset{ margin-left:14%; }
+@media (max-width:700px){
+  .w-third, .w-two-thirds, .w-five-twelfths, .w-half{ width:80%; }
+  .align-offset{ margin-left:auto; }
+}
+
+/* ---------- WOVEN CANVAS ---------- */
+/* Ported from WovenLightHero: a full-bleed, mouse-reactive Three.js
+   particle canvas (see WovenCanvas.jsx). Sized like the other full-bleed
+   moments on this page rather than a full 100vh hero, since it sits
+   mid-page between the photo gallery and Partners. */
+.woven-section{
+  position:relative; height:80vh; overflow:hidden;
+  background:var(--deep);
+}
+.woven-canvas{ position:absolute; inset:0; }
+.woven-canvas canvas{ display:block; width:100%; height:100%; }
+
+/* ---------- MOUSE TRAIL ---------- */
+/* Spring-jointed rainbow trail chains that ease toward the pointer (see
+   MouseTrailCanvas.jsx). Needs a dark backdrop for its additive "lighter"
+   blend to actually read — washes out on this site's light/yellow
+   sections — so this one section stays navy on purpose. */
+.mouse-trail-section{
+  position:relative; height:70vh; overflow:hidden;
+  background:#0b1d3a;
+}
+.mouse-trail-canvas{ display:block; width:100%; height:100%; }
+
+/* ---------- HANDOFF MEET ---------- */
+/* The human hand eases in from the bottom-left, the AI hand from the
+   top-right (see useHandMeetScroll.js), meeting at center; the background
+   here starts --deep and lerps to white right as they touch, staged for
+   copy to land on once that's ready. Both hands share the same CSS height
+   so they scale together and their fingertips land exactly where the
+   source photo was split, with no gap. */
+.handoff-meet{
+  position:relative; height:100vh; overflow:hidden;
+  background:var(--deep);
+}
+.handoff-meet-stage{
+  position:absolute; inset:0;
+  display:flex; align-items:center; justify-content:center;
+}
+.handoff-hand{
+  height:135vmin; width:auto; display:block; will-change:transform, opacity;
+}
+@media (max-width:700px){
+  .handoff-hand{ height:108vmin; }
+}
+
+/* ---------- WAVE MORPH ---------- */
+/* The liquid-wave divider from wearebreakfast.com's hero: a flat SVG blob
+   path continuously eases between two shapes of identical structure (see
+   useWaveMorph.js). No canvas/WebGL involved — just the one <path>'s `d`
+   attribute being rewritten every frame. */
+.wave-morph{ display:block; width:100%; line-height:0; }
+.wave-morph-svg{ display:block; width:100%; height:32vw; min-height:220px; max-height:460px; }
+
+/* ---------- SCROLL EXPAND MEDIA ---------- */
+/* Ported from the ScrollExpandMedia component: a small centered media box
+   grows to fill the section as the user scrolls (scroll-jacked while this
+   card is the active one — see ScrollExpandMedia.jsx), with a dimmed
+   full-bleed copy of the same media behind it fading out as it goes. */
+.sem-section{
+  position:relative; min-height:100vh; display:flex; align-items:center;
+  justify-content:center; overflow:hidden; border-bottom:1px solid var(--line);
+}
+.sem-bg{ position:absolute; inset:0; z-index:0; }
+.sem-bg img, .sem-bg video{
+  width:100%; height:100%; object-fit:cover; display:block;
+}
+.sem-bg-scrim{ position:absolute; inset:0; background:rgba(26,26,26,.15); }
+.sem-box{
+  position:relative; z-index:1; max-width:95vw; max-height:85vh;
+  border-radius:20px; overflow:hidden; box-shadow:var(--shadow);
+}
+.sem-box img, .sem-box video{
+  width:100%; height:100%; object-fit:cover; display:block;
+}
+.sem-box-scrim{ position:absolute; inset:0; background:rgba(26,26,26,.4); }
+
+/* ---------- PARTNERS ---------- */
+.partners-strip{
+  display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); border:1px solid var(--line);
+}
+@media (max-width:700px){ .partners-strip{ grid-template-columns:1fr; } }
+.partner-card{
+  background:var(--bg-raised); padding:clamp(28px,4vw,46px); display:flex; flex-direction:column; gap:20px;
+  transition:transform .2s ease-out, box-shadow .2s ease-out;
+}
+.partner-card:hover{ transform:translateY(-4px); }
+.partner-card img{ max-height:64px; width:auto; align-self:flex-start; }
+.align-center .partner-card{ align-items:center; }
+.align-center .partner-card img{ align-self:center; }
+
+/* ---------- PARTNERS CAROUSEL ---------- */
+/* Ported from "cases-with-infinite-scroll": embla-carousel-react under
+   plain CSS instead of Tailwind. .carousel-viewport is the overflow-hidden
+   window (embla's own ref target); .carousel-track is the flex row it
+   slides; .carousel-item sets how many tiles show per breakpoint. */
+.partners-carousel{ width:100%; max-width:720px; margin:0 auto; }
+.carousel-viewport{ overflow:hidden; }
+.carousel-track{ display:flex; margin-left:-16px; }
+.carousel-item{
+  min-width:0; flex:0 0 auto; padding-left:16px;
+}
+.partners-carousel-item{ flex-basis:50%; }
+@media (min-width:640px){ .partners-carousel-item{ flex-basis:33.333%; } }
+.partners-carousel-tile{
+  aspect-ratio:1; display:flex; align-items:center; justify-content:center;
+  padding:clamp(20px,3vw,32px); border-radius:16px; border-top:3px solid;
+  background:var(--bg-raised); box-shadow:var(--shadow);
+  transition:transform .2s ease-out;
+}
+.partners-carousel-tile:hover{ transform:translateY(-4px); }
+.partners-carousel-tile img{
+  max-width:100%; max-height:100%; object-fit:contain;
+  transition:transform .2s ease-out;
+}
+.partners-carousel-tile:hover img{ transform:scale(1.06); }
+
+/* ---------- MARQUEE LOGO SCROLLER ---------- */
+/* Ported from MarqueeLogoScroller: the logo list is rendered twice back
+   to back and animated translateX(0) -> translateX(-50%) on a linear
+   infinite loop, so the seam where it repeats is invisible. A mask-image
+   fades the strip's edges to transparent. */
+.marquee-scroller{
+  width:100%; max-width:1000px; margin:0 auto;
+  border-radius:24px; border:1px solid var(--line); overflow:hidden;
+  background:var(--bg-raised);
+}
+.marquee-scroller-head{
+  padding:clamp(24px,4vw,40px) clamp(24px,4vw,40px) 0;
+}
+.marquee-scroller-head h2{ font-size:clamp(24px,3vw,34px); margin:0 0 8px; text-transform:uppercase; }
+.marquee-scroller-head p{ color:var(--muted); margin:0; max-width:520px; }
+.marquee-scroller-mask{
+  width:100%; overflow:hidden;
+  -webkit-mask-image:linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  mask-image:linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+.marquee-scroller-track{
+  display:flex; width:max-content; align-items:center; gap:16px;
+  padding:clamp(24px,4vw,40px);
+  animation-name:marquee-scroll; animation-timing-function:linear; animation-iteration-count:infinite;
+}
+.marquee-scroller-mask:hover .marquee-scroller-track{ animation-play-state:paused; }
+@keyframes marquee-scroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+@media (prefers-reduced-motion: reduce){ .marquee-scroller-track{ animation:none; } }
+.marquee-scroller-tile{
+  position:relative; height:120px; width:200px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  border-radius:14px; overflow:hidden; background:var(--bg);
+}
+.marquee-scroller-tile img{
+  height:70%; width:auto; max-width:75%; object-fit:contain;
+}
+
+/* ---------- FOOTER / CTA ---------- */
+footer{ padding:clamp(64px,10vw,120px) 0 40px; }
+.cta-mark{
+  border:1px solid var(--line); box-shadow:var(--shadow); overflow:hidden;
+  background:var(--bg-raised);
+}
+.cta-mark img{
+  width:100%; display:block;
+  transition:transform .8s cubic-bezier(.76,0,.24,1);
+}
+.cta-mark:hover img{ transform:scale(1.04); }
+
+@media (prefers-reduced-motion: no-preference){
+  .reveal{ opacity:0; transform:translateY(16px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:none; }
+}
+
+/* ---------- SMOOTH SCROLL RIG ---------- */
+html{ scroll-behavior:auto; }
+html.has-smooth-scroll, html.has-smooth-scroll body{ height:auto; }
+html.has-smooth-scroll #smooth-content{
+  position:fixed; top:0; left:0; width:100%; will-change:transform;
+}
+#smooth-spacer{ width:1px; }
+
+/* ---------- SCROLL-HERO CLIP REVEAL ---------- */
+/* Ported from the SmoothScrollHero React component (framer-motion
+   useScroll/useTransform driving a clip-path polygon + background scale).
+   Same math: clip insets from 25%/75% down to 0%/100% as the element
+   crosses the viewport, image scales 1.7 -> 1 over the same range. JS
+   (see useScrollHeroClip) sets clip-path + transform inline every frame;
+   this class just establishes the box those inline styles animate.
+   `.card-copy` is an empty, ready-to-use slot for future headline/body
+   text on each card. */
+.scroll-hero-fill{ will-change:clip-path; }
+.scroll-hero-fill > img, .scroll-hero-fill > video{ will-change:transform; }
+.card-copy{
+  position:absolute; inset:0; z-index:2; display:flex; align-items:flex-end;
+  padding:clamp(20px,4vw,48px); pointer-events:none;
+}
+
+/* ---------- CURSOR ---------- */
+/* neuemontreal.com sets cursor:none site-wide and drives its own pointer;
+   mirrored here, gated to fine-pointer + motion-allowed devices only. */
+html.custom-cursor, html.custom-cursor *{ cursor:none !important; }
+.cursor-dot{
+  position:fixed; top:0; left:0; width:9px; height:9px; border-radius:50%;
+  background:var(--accent); pointer-events:none; z-index:999; mix-blend-mode:hard-light;
+  transform:translate(-50%,-50%); transition:width .25s ease, height .25s ease, background .25s ease;
+  opacity:0;
+}
+.cursor-ring{
+  position:fixed; top:0; left:0; width:38px; height:38px; border-radius:50%;
+  border:1px solid var(--accent); pointer-events:none; z-index:998;
+  transform:translate(-50%,-50%); transition:width .3s ease, height .3s ease, opacity .3s ease, border-color .3s ease;
+  opacity:0;
+}
+html.custom-cursor .cursor-dot, html.custom-cursor .cursor-ring{ opacity:1; }
+.cursor-dot.hovering{ width:0; height:0; }
+.cursor-ring.hovering{ width:64px; height:64px; border-color:var(--accent-2); }
+@media (pointer:coarse), (prefers-reduced-motion: reduce){
+  .cursor-dot, .cursor-ring{ display:none; }
+}
+
+/* ---------- LINE / WORD REVEAL (masked headline type-in) ---------- */
+/* Timing matches neuemontreal.com's own headline reveal: transform 400ms
+   cubic-bezier(.76,0,.24,1), staggered ~30ms per word. Unused until copy
+   comes back, kept ready — wrap future headings in .lines/.line-mask. */
+.lines{ display:block; }
+.line-mask{ display:block; overflow:hidden; }
+.line-mask span{ display:block; }
+.word-mask{ display:inline-block; overflow:hidden; vertical-align:top; }
+.word-inner{
+  display:inline-block; transform:translateY(115%);
+  transition:transform 400ms cubic-bezier(.76,0,.24,1);
+}
+@media (prefers-reduced-motion: no-preference){
+  .lines.in .word-inner, .lines.in .line-mask span{ transform:none; }
+}
+@media (prefers-reduced-motion: reduce){
+  .word-inner, .line-mask span{ transform:none; }
+}
+
+/* ---------- MAGNETIC HOVER TARGETS ---------- */
+/* Unused until buttons/links come back, kept ready. */
+.magnetic{ transition:transform .35s cubic-bezier(.16,1,.3,1); display:inline-block; }
+
+.count-up{ font-variant-numeric:tabular-nums; }
+
+/* ---------- HANDOFF: two hands sliding together ---------- */
+.handoff-split{ position:absolute; inset:0; display:flex; }
+.handoff-half{ flex:1 1 50%; overflow:hidden; position:relative; }
+.handoff-half img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+@media (prefers-reduced-motion: no-preference){
+  .handoff-left{ transform:translateX(-16%); }
+  .handoff-right{ transform:translateX(16%); }
+  .handoff-left, .handoff-right{ transition:transform 1.1s cubic-bezier(.76,0,.24,1); }
+  .handoff-split.in .handoff-left, .handoff-split.in .handoff-right{ transform:translateX(0); }
+}
