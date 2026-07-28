@@ -53,7 +53,10 @@ export default function HandoffMeet() {
             speed. One handoff.
           </SpecialText>
         </h2>
-        <a className="apply-btn apply-btn-light" href="#apply">
+        <a
+          className="apply-btn apply-btn-light"
+          href="mailto:hello@eurus.city?subject=I'm%20interested%20in%20applying"
+        >
           Apply now
         </a>
       </div>

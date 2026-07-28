@@ -14,20 +14,13 @@ import useSlideReveal from "../hooks/useSlideReveal.js";
  * figure uses (see useSlideReveal.js).
  */
 export default function BreakfastMiddleSection() {
-  const imgRef = useRef(null);
-  useSlideReveal(imgRef, { fromXPercent: -100, fromYPercent: 100 });
+  const figureRef = useRef(null);
+  useSlideReveal(figureRef, { fromXPercent: -100, fromYPercent: 100 });
 
   return (
     <section className="bf-middle">
-      <p className="bf-wave-copy">
-        BREAKFAST IS REMIXING THE INGREDIENTS
-        <br />
-        OF THE TRAILER MUSIC WORLD.
-      </p>
-
-      <figure className="bf-middle-collage">
+      <figure className="bf-middle-collage" ref={figureRef}>
         <img
-          ref={imgRef}
           src={asset("/images/keyboard.png")}
           alt="Hands holding the Eurus keyboard"
         />

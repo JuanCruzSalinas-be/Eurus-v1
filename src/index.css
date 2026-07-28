@@ -144,7 +144,7 @@ a{ color:inherit; transition:color .2s ease-out; }
   background:var(--sw-indigo); --bg:var(--sw-indigo); --fg:var(--deep-fg); --muted:rgba(240,231,212,.78);
   --line:rgba(240,231,212,.28); --bg-raised:rgba(240,231,212,.1); --shadow:none;
 }
-.band-grey{ background:#fff; --bg:#fff; }
+.band-grey{ background:#f7fbfe; --bg:#f7fbfe; }
 #partners{ padding:clamp(80px,10vw,120px) 0; }
 .band-ink{
   background:var(--deep); --bg:var(--deep); --fg:var(--deep-fg); --muted:rgba(240,231,212,.65);
@@ -365,41 +365,23 @@ a{ color:inherit; transition:color .2s ease-out; }
    their own CSS falls back to (Arial/sans-serif) instead. No wave, no
    pastel gradient — plain white, per request. */
 .bf-middle{
-  background:#fff; padding:clamp(70px,12vw,140px) 24px clamp(40px,8vw,100px);
-}
-.bf-wave-copy{
-  margin:0 auto clamp(40px,7vw,80px); text-align:center; color:#000;
-  font-family:Arial, Helvetica, sans-serif; font-weight:500;
-  text-transform:uppercase; letter-spacing:.01em;
-  font-size:clamp(20px,3.4vw,40px); max-width:22ch;
-  line-height:1.25;
+  background:none; padding:clamp(40px,6vw,80px) 24px; overflow:hidden;
 }
 .bf-middle-collage{
-  margin:0 auto; max-width:520px; overflow:hidden;
+  margin:0 auto; max-width:none; overflow:visible;
   display:flex; justify-content:center;
 }
 .bf-middle-collage img{
-  width:100%; height:auto; max-height:70vh; object-fit:contain;
+  width:auto; height:auto; max-width:140vw; max-height:130vh; object-fit:contain;
   will-change:transform;
   filter:drop-shadow(0 30px 40px rgba(26,26,26,.25));
 }
 
 .bf-work{
-  background:#fff;
+  background:#f7fbfe;
   padding:clamp(60px,10vw,140px) 0 clamp(50px,8vw,100px);
   overflow:hidden;
 }
-.bf-work-marquee{ width:100%; overflow:hidden; margin-bottom:clamp(40px,8vw,110px); }
-.bf-work-marquee-track{
-  display:flex; width:max-content; gap:clamp(24px,4vw,56px);
-  animation:marquee-scroll 18s linear infinite;
-}
-.bf-work-marquee-track span{
-  font-family:Arial, Helvetica, sans-serif; font-weight:700; color:#000;
-  text-transform:uppercase; letter-spacing:.01em;
-  font-size:clamp(48px,10vw,120px); line-height:.85;
-}
-@media (prefers-reduced-motion: reduce){ .bf-work-marquee-track{ animation:none; } }
 .bf-work-copy{
   margin:0 auto; max-width:46ch; padding:0 24px; text-align:center;
   font-family:Arial, Helvetica, sans-serif; font-weight:200; color:#000;
@@ -612,21 +594,6 @@ html.custom-cursor .cursor-dot, html.custom-cursor .cursor-ring{ opacity:1; }
 .apply-btn:hover{ transform:translateY(-2px); }
 .apply-btn-light{ background:#fff; color:#0b1d3a; }
 .apply-btn-light:hover{ box-shadow:0 12px 30px -12px rgba(255,255,255,.4); }
-.apply-btn-dark{ background:var(--fg); color:var(--bg); }
-.apply-btn-dark:hover{ box-shadow:var(--shadow); }
-
-.apply-section{
-  padding:clamp(90px,14vw,180px) 24px; text-align:center;
-  display:flex; flex-direction:column; align-items:center; gap:22px;
-  background:var(--bg);
-}
-.apply-section h2{
-  margin:0; font-size:clamp(30px,5vw,52px); font-weight:600; line-height:1.15; max-width:18ch;
-}
-.apply-section p{
-  margin:0; max-width:44ch; font-size:18px; color:var(--muted);
-}
-.apply-section .apply-btn{ margin-top:10px; }
 
 .count-up{ font-variant-numeric:tabular-nums; }
 

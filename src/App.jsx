@@ -10,7 +10,6 @@ import HandoffMeet from "./components/HandoffMeet.jsx";
 import WovenSection from "./components/WovenSection.jsx";
 import Partners from "./components/Partners.jsx";
 import WaveMorph from "./components/WaveMorph.jsx";
-import ApplySection from "./components/ApplySection.jsx";
 
 import useCustomCursor from "./hooks/useCustomCursor.js";
 import useLerpScroll from "./hooks/useLerpScroll.js";
@@ -43,10 +42,10 @@ import useAnchorScroll from "./hooks/useAnchorScroll.js";
  * WaveMorph is the liquid-wave divider ported from wearebreakfast.com's
  * hero (see useWaveMorph.js) — used twice, navy after the opening and
  * light blue before Partners; both carry a short line of filler copy
- * (passed as children).
- * ApplySection, last on the page, is the closing CTA — its #apply anchor
- * is also where the "Apply now" button inside HandoffMeet's black reveal
- * links to.
+ * (passed as children). Partners is last on the page — the closing
+ * ApplySection CTA has been removed; the "Apply now" button inside
+ * HandoffMeet's black reveal now links directly to the mailto instead of
+ * to that section's #apply anchor.
  */
 const NAVY = "#0b1d3a";
 const LIGHT_BLUE = "#8fd8ff";
@@ -79,7 +78,6 @@ export default function App() {
             <p>Built alongside the people already opening doors in Frederick County.</p>
           </WaveMorph>
           <Partners partners={content.partners} />
-          <ApplySection />
         </main>
       </div>
     </>
