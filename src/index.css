@@ -274,8 +274,18 @@ a{ color:inherit; transition:color .2s ease-out; }
 .align-center-block{ margin-left:auto; margin-right:auto; }
 .align-offset{ margin-left:14%; }
 @media (max-width:700px){
-  .w-third, .w-two-thirds, .w-five-twelfths, .w-half{ width:80%; }
-  .align-offset{ margin-left:auto; }
+  .w-third, .w-two-thirds, .w-five-twelfths, .w-half{ width:86%; }
+  /* Desktop alternates each photo hard-left/hard-right on purpose (it's
+     what makes room for copy down the center later) — on a narrow phone
+     screen that just reads as a zigzag with nothing to align to, so every
+     variant collapses to centered here. The scroll-linked vertical float
+     (see ParallaxImg.jsx) is disabled the same way: its translateY doesn't
+     reserve layout space, so on the short, tightly-stacked mobile column
+     it was sliding adjacent photos into/over each other. */
+  .align-left, .align-right, .align-offset, .align-center-block{
+    margin-left:auto; margin-right:auto;
+  }
+  .parallax-img{ transform:none !important; opacity:1 !important; }
 }
 
 /* ---------- WOVEN CANVAS ---------- */
@@ -337,7 +347,13 @@ a{ color:inherit; transition:color .2s ease-out; }
    card is the active one — see ScrollExpandMedia.jsx), with a dimmed
    full-bleed copy of the same media behind it fading out as it goes. */
 .sem-section{
-  position:relative; min-height:100vh; display:flex; align-items:center;
+  /* height (not min-height): .sem-box's width/height are percentages set
+     inline by ScrollExpandMedia.jsx, and percentage heights only resolve
+     against a *definite* parent height — min-height doesn't count, so
+     with min-height here .sem-box silently fell back to auto-sizing off
+     the video's own intrinsic aspect ratio instead of actually growing,
+     leaving it stuck as a tiny thumbnail no matter how far you scrolled. */
+  position:relative; height:100vh; display:flex; align-items:center;
   justify-content:center; overflow:hidden; border-bottom:1px solid var(--line);
 }
 .sem-bg{ position:absolute; inset:0; z-index:0; }
