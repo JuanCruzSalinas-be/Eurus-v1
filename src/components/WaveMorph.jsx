@@ -14,7 +14,7 @@ const WAVE_B =
   "M0,100 C160,220 320,0 480,100 C640,220 800,0 960,100 C1120,220 1280,0 1440,100 C1600,220 1760,0 1920,100 " +
   "L1920,300 C1760,180 1600,400 1440,300 C1280,180 1120,400 960,300 C800,180 640,400 480,300 C320,180 160,400 0,300 Z";
 
-export default function WaveMorph({ color }) {
+export default function WaveMorph({ color, textColor, children }) {
   const pathRef = useRef(null);
   useWaveMorph(pathRef, { from: WAVE_A, to: WAVE_B });
 
@@ -28,6 +28,11 @@ export default function WaveMorph({ color }) {
       >
         <path ref={pathRef} d={WAVE_A} fill={color} />
       </svg>
+      {children && (
+        <div className="wave-morph-copy" style={{ color: textColor }}>
+          {children}
+        </div>
+      )}
     </div>
   );
 }

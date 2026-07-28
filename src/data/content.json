@@ -5,58 +5,6 @@
     "mediaSrc": "/videos/road.mp4",
     "bgSrc": "/images/mark-forest.jpg"
   },
-  "static": [
-    {
-      "id": "hero-skyline",
-      "type": "image",
-      "src": "/images/hero-skyline.jpg",
-      "alt": "City skyline at dawn, the Eurus mark lit on a downtown tower",
-      "start": -200,
-      "end": 200,
-      "width": "third",
-      "align": "left"
-    },
-    {
-      "id": "city-sky",
-      "type": "image",
-      "src": "/images/eurus-city-sky.jpg",
-      "alt": "Looking up at the Eurus tower lit gold at sunset between two skyscrapers",
-      "start": 200,
-      "end": -250,
-      "width": "half",
-      "align": "right"
-    },
-    {
-      "id": "story",
-      "type": "image",
-      "src": "/images/mark-architecture.jpg",
-      "alt": "The Eurus mark glowing through an architectural skylight",
-      "start": -200,
-      "end": 200,
-      "width": "third",
-      "align": "right"
-    },
-    {
-      "id": "how",
-      "type": "image",
-      "src": "/images/mark-night.jpg",
-      "alt": "The Eurus mark lit up at night behind two silhouetted figures",
-      "start": 0,
-      "end": -500,
-      "width": "five-twelfths",
-      "align": "left"
-    },
-    {
-      "id": "night-skyline",
-      "type": "image",
-      "src": "/images/city-skyline.png",
-      "alt": "Aerial night view of a dense city skyline with the Eurus mark lit on a downtown tower",
-      "start": -250,
-      "end": 200,
-      "width": "third",
-      "align": "right"
-    }
-  ],
   "partners": [
     {
       "src": "/images/fcws.png",

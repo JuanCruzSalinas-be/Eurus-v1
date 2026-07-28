@@ -300,24 +300,13 @@ a{ color:inherit; transition:color .2s ease-out; }
 .woven-canvas{ position:absolute; inset:0; }
 .woven-canvas canvas{ display:block; width:100%; height:100%; }
 
-/* ---------- MOUSE TRAIL ---------- */
-/* Spring-jointed rainbow trail chains that ease toward the pointer (see
-   MouseTrailCanvas.jsx). Needs a dark backdrop for its additive "lighter"
-   blend to actually read — washes out on this site's light/yellow
-   sections — so this one section stays navy on purpose. */
-.mouse-trail-section{
-  position:relative; height:70vh; overflow:hidden;
-  background:#0b1d3a;
-}
-.mouse-trail-canvas{ display:block; width:100%; height:100%; }
-
 /* ---------- HANDOFF MEET ---------- */
 /* The human hand eases in from the bottom-left, the AI hand from the
    top-right (see useHandMeetScroll.js), meeting at center; the background
-   here starts --deep and lerps to white right as they touch, staged for
-   copy to land on once that's ready. Both hands share the same CSS height
-   so they scale together and their fingertips land exactly where the
-   source photo was split, with no gap. */
+   snaps from --deep to black right as they touch, revealing the headline
+   in .handoff-meet-copy in that same frame. Both hands share the same CSS
+   height so they scale together and their fingertips land exactly where
+   the source photo was split, with no gap. */
 .handoff-meet{
   position:relative; height:100vh; overflow:hidden;
   background:var(--deep);
@@ -332,14 +321,91 @@ a{ color:inherit; transition:color .2s ease-out; }
 @media (max-width:700px){
   .handoff-hand{ height:108vmin; }
 }
+.handoff-meet-copy{
+  position:absolute; inset:0; z-index:1;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:28px;
+  text-align:center; padding:0 24px;
+  opacity:0; will-change:opacity;
+}
+.handoff-meet-copy h2{
+  margin:0; color:#fff;
+  font-size:clamp(18px,4vw,42px); font-weight:600; line-height:1.3;
+}
+.special-text{
+  font-family:'SF Mono', 'Menlo', 'Consolas', monospace;
+  white-space:pre;
+}
 
 /* ---------- WAVE MORPH ---------- */
 /* The liquid-wave divider from wearebreakfast.com's hero: a flat SVG blob
    path continuously eases between two shapes of identical structure (see
    useWaveMorph.js). No canvas/WebGL involved — just the one <path>'s `d`
    attribute being rewritten every frame. */
-.wave-morph{ display:block; width:100%; line-height:0; }
+.wave-morph{ position:relative; display:block; width:100%; line-height:normal; }
 .wave-morph-svg{ display:block; width:100%; height:32vw; min-height:220px; max-height:460px; }
+.wave-morph-copy{
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  text-align:center; padding:0 24px; pointer-events:none;
+}
+.wave-morph-copy p{
+  margin:0; max-width:36ch; font-size:clamp(18px,2.4vw,28px); font-weight:600;
+  line-height:1.35; text-wrap:balance;
+}
+@media (max-width:700px){
+  .wave-morph-copy p{ font-size:16px; max-width:26ch; }
+}
+
+/* ---------- BREAKFAST-STYLE SECTIONS ---------- */
+/* Structural recreation of wearebreakfast.com's home__middle + home__work
+   (see BreakfastMiddleSection.jsx / BreakfastWorkSection.jsx) — same
+   wording, same weight/uppercase/tracking treatment as their
+   .home__wave__content / .home__middle__copy / .animated-text /
+   .home__work__copy. Their "Equip" webfont is a licensed commercial font
+   we don't have rights to bundle, so this uses the exact fallback stack
+   their own CSS falls back to (Arial/sans-serif) instead. No wave, no
+   pastel gradient — plain white, per request. */
+.bf-middle{
+  background:#fff; padding:clamp(70px,12vw,140px) 24px clamp(40px,8vw,100px);
+}
+.bf-wave-copy{
+  margin:0 auto clamp(40px,7vw,80px); text-align:center; color:#000;
+  font-family:Arial, Helvetica, sans-serif; font-weight:500;
+  text-transform:uppercase; letter-spacing:.01em;
+  font-size:clamp(20px,3.4vw,40px); max-width:22ch;
+  line-height:1.25;
+}
+.bf-middle-collage{
+  margin:0 auto; max-width:520px; overflow:hidden;
+  display:flex; justify-content:center;
+}
+.bf-middle-collage img{
+  width:100%; height:auto; max-height:70vh; object-fit:contain;
+  will-change:transform;
+  filter:drop-shadow(0 30px 40px rgba(26,26,26,.25));
+}
+
+.bf-work{
+  background:#fff;
+  padding:clamp(60px,10vw,140px) 0 clamp(50px,8vw,100px);
+  overflow:hidden;
+}
+.bf-work-marquee{ width:100%; overflow:hidden; margin-bottom:clamp(40px,8vw,110px); }
+.bf-work-marquee-track{
+  display:flex; width:max-content; gap:clamp(24px,4vw,56px);
+  animation:marquee-scroll 18s linear infinite;
+}
+.bf-work-marquee-track span{
+  font-family:Arial, Helvetica, sans-serif; font-weight:700; color:#000;
+  text-transform:uppercase; letter-spacing:.01em;
+  font-size:clamp(48px,10vw,120px); line-height:.85;
+}
+@media (prefers-reduced-motion: reduce){ .bf-work-marquee-track{ animation:none; } }
+.bf-work-copy{
+  margin:0 auto; max-width:46ch; padding:0 24px; text-align:center;
+  font-family:Arial, Helvetica, sans-serif; font-weight:200; color:#000;
+  text-transform:uppercase; letter-spacing:.01em;
+  font-size:clamp(22px,4vw,52px); line-height:1.2;
+}
 
 /* ---------- SCROLL EXPAND MEDIA ---------- */
 /* Ported from the ScrollExpandMedia component: a small centered media box
@@ -533,6 +599,34 @@ html.custom-cursor .cursor-dot, html.custom-cursor .cursor-ring{ opacity:1; }
 /* ---------- MAGNETIC HOVER TARGETS ---------- */
 /* Unused until buttons/links come back, kept ready. */
 .magnetic{ transition:transform .35s cubic-bezier(.16,1,.3,1); display:inline-block; }
+
+/* ---------- APPLY BUTTON ---------- */
+/* Two color variants for two different backdrops: -light sits on the
+   hand-meet reveal's black, -dark sits on the closing section's --bg. */
+.apply-btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:16px 36px; border-radius:999px;
+  font-size:17px; font-weight:600; text-decoration:none; white-space:nowrap;
+  transition:transform .25s cubic-bezier(.16,1,.3,1), box-shadow .25s ease;
+}
+.apply-btn:hover{ transform:translateY(-2px); }
+.apply-btn-light{ background:#fff; color:#0b1d3a; }
+.apply-btn-light:hover{ box-shadow:0 12px 30px -12px rgba(255,255,255,.4); }
+.apply-btn-dark{ background:var(--fg); color:var(--bg); }
+.apply-btn-dark:hover{ box-shadow:var(--shadow); }
+
+.apply-section{
+  padding:clamp(90px,14vw,180px) 24px; text-align:center;
+  display:flex; flex-direction:column; align-items:center; gap:22px;
+  background:var(--bg);
+}
+.apply-section h2{
+  margin:0; font-size:clamp(30px,5vw,52px); font-weight:600; line-height:1.15; max-width:18ch;
+}
+.apply-section p{
+  margin:0; max-width:44ch; font-size:18px; color:var(--muted);
+}
+.apply-section .apply-btn{ margin-top:10px; }
 
 .count-up{ font-variant-numeric:tabular-nums; }
 

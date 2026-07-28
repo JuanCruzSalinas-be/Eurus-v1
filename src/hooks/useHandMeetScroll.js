@@ -13,9 +13,10 @@ import { useEffect } from "react";
  * position where it exactly fills the screen top-to-bottom with nothing
  * clipped. So the touch always lands on the one frame where the user can
  * see the whole section, not a half-scrolled sliver of it. The instant they
- * touch (p crosses TOUCH_AT), both the hands and the background snap
- * instantly — hands to hidden, background to black — no fade, a hard cut
- * tied directly to scroll position (still fully reversible: scrolling back
+ * touch (p crosses TOUCH_AT), the hands, the background, and the optional
+ * .handoff-meet-copy headline all snap instantly — hands to hidden,
+ * background to black, copy to visible — no fade, a hard cut tied
+ * directly to scroll position (still fully reversible: scrolling back
  * below TOUCH_AT snaps everything straight back).
  */
 const TOUCH_AT = 0.5;
@@ -40,13 +41,14 @@ function lerpColor(a, b, t) {
   return `rgb(${c[0]}, ${c[1]}, ${c[2]})`;
 }
 
-export default function useHandMeetScroll(rootRef) {
+export default function useHandMeetScroll(rootRef, { onTouchChange } = {}) {
   useEffect(() => {
     const section = rootRef.current;
     if (!section) return;
 
     const human = section.querySelector(".handoff-hand-human");
     const ai = section.querySelector(".handoff-hand-ai");
+    const copy = section.querySelector(".handoff-meet-copy");
     if (!human || !ai) return;
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -55,11 +57,14 @@ export default function useHandMeetScroll(rootRef) {
       ai.style.transform = "translate3d(0,0,0)";
       human.style.opacity = "0";
       ai.style.opacity = "0";
+      if (copy) copy.style.opacity = "1";
       section.style.backgroundColor = lerpColor(DEEP, BLACK, 1);
+      if (onTouchChange) onTouchChange(true);
       return;
     }
 
     let raf;
+    let lastTouched = false;
     const tick = () => {
       const p = progressFor(section);
       const travel = smoothstep(p, 0, TOUCH_AT);
@@ -75,12 +80,19 @@ export default function useHandMeetScroll(rootRef) {
       ai.style.transform = `translate3d(${aiX}vw, ${aiY}vh, 0)`;
       ai.style.opacity = touched ? "0" : "1";
 
+      if (copy) copy.style.opacity = touched ? "1" : "0";
+
       section.style.backgroundColor = lerpColor(DEEP, BLACK, touched ? 1 : 0);
+
+      if (touched !== lastTouched) {
+        lastTouched = touched;
+        if (onTouchChange) onTouchChange(touched);
+      }
 
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
 
     return () => cancelAnimationFrame(raf);
-  }, [rootRef]);
+  }, [rootRef, onTouchChange]);
 }
