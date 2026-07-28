@@ -45,11 +45,11 @@ export default function HandoffMeet() {
             .special-text's white-space:pre) keeps each line's box a
             constant size for the entire animation. */}
         <h2>
-          <SpecialText play={touched} speed={18}>
+          <SpecialText play={touched} speed={10}>
             Human judgment. AI
           </SpecialText>
           <br />
-          <SpecialText play={touched} speed={18}>
+          <SpecialText play={touched} speed={10}>
             speed. One handoff.
           </SpecialText>
         </h2>
