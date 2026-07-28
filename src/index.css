@@ -376,6 +376,13 @@ a{ color:inherit; transition:color .2s ease-out; }
   will-change:transform;
   filter:drop-shadow(0 30px 40px rgba(26,26,26,.25));
 }
+@media (max-width:700px){
+  /* The 140vw/130vh bleed is a deliberate desktop-only overflow effect —
+     on a narrow viewport there's no room for it to bleed off the edges
+     without cropping the photo itself, so cap it back down to fit
+     entirely on screen instead. */
+  .bf-middle-collage img{ max-width:92vw; max-height:60vh; }
+}
 
 .bf-work{
   background:#f7fbfe;
